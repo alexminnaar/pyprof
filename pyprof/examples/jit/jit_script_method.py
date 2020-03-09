@@ -2,20 +2,23 @@
 
 import torch
 import torch.cuda.profiler as profiler
-import pyprof2
-pyprof2.init()
+import pyprof
 
-class Foo(torch.nn.Module):
+class Foo(torch.jit.ScriptModule):
     def __init__(self, size):
         super(Foo, self).__init__()
         self.n = torch.nn.Parameter(torch.ones(size))
         self.m = torch.nn.Parameter(torch.ones(size))
 
+    @torch.jit.script_method
     def forward(self, input):
         return self.n*input + self.m
 
-#Hook the forward function to pyprof2
-pyprof2.wrap(Foo, 'forward')
+#Initialize pyprof after the JIT step
+pyprof.init()
+
+#Hook up the forward function to pyprof
+pyprof.wrap(Foo, 'forward')
 
 foo = Foo(4)
 foo.cuda()
@@ -25,3 +28,4 @@ with torch.autograd.profiler.emit_nvtx():
 	profiler.start()
 	z = foo(x)
 	profiler.stop()
+	print(z)

@@ -9,8 +9,8 @@ import torch.nn as nn
 
 import torch.cuda.profiler as profiler
 import torch.cuda.nvtx as nvtx
-import pyprof2
-pyprof2.init()
+import pyprof
+pyprof.init()
 
 def conv3x3(in_planes, out_planes, stride=1, groups=1, dilation=1):
 	"""3x3 convolution with padding"""

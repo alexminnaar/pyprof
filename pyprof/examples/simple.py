@@ -2,7 +2,7 @@
 
 """
 This simple file provides an example of how to
- - import the pyprof2 library and initialize it
+ - import the pyprof library and initialize it
  - use the emit_nvtx context manager
  - start and stop the profiler
 
@@ -15,9 +15,9 @@ import sys
 import torch
 import torch.cuda.profiler as profiler
 
-#Import and initialize pyprof2
-import pyprof2
-pyprof2.init()
+#Import and initialize pyprof
+import pyprof
+pyprof.init()
 
 a = torch.randn(5, 5).cuda()
 b = torch.randn(5, 5).cuda()

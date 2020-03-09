@@ -1,11 +1,11 @@
 import torch
 from apex.optimizers import FusedAdam
 import amp_C
-import pyprof2
+import pyprof
 
-pyprof2.init()
+pyprof.init()
 # Wrap the custom fused multi tensor Adam implementation
-pyprof2.wrap(amp_C, 'multi_tensor_adam')
+pyprof.wrap(amp_C, 'multi_tensor_adam')
 
 inp = 1024
 hid = 2048

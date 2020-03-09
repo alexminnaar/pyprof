@@ -6,14 +6,14 @@ with open('requirements.txt', 'r') as f:
 	required = f.read().splitlines()
 
 setup(
-	name="pyprof2",
+	name="pyprof",
 	version='1.0',
 	author="Aditya Agrawal",
 	author_email="aditya.iitb@gmail.com",
 	maintainer="Aditya Agrawal",
 	maintainer_email="aditya.iitb@gmail.com",
-	url="https://github.com/adityaiitb/pyprof2",
+	url="https://github.com/adityaiitb/pyprof",
 	license="BSD 3-Clause License",
-	packages=['pyprof2', 'pyprof2.nvtx'],
+	packages=['pyprof', 'pyprof.nvtx'],
 	install_requires=required,
 )

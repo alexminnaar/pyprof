@@ -6,8 +6,8 @@ import torch.nn.functional as F
 import torch.cuda.profiler as profiler
 import torch.optim as optim
 
-import pyprof2
-pyprof2.init()
+import pyprof
+pyprof.init()
 
 class LeNet5(nn.Module):
 	def __init__(self):

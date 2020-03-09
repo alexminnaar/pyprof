@@ -2,9 +2,9 @@
 
 import torch
 import torch.cuda.profiler as profiler
-import pyprof2
-#Initialize pyprof2
-pyprof2.init()
+import pyprof
+#Initialize pyprof
+pyprof.init()
 
 class Foo(torch.autograd.Function):
 	@staticmethod
@@ -18,9 +18,9 @@ class Foo(torch.autograd.Function):
 		in2_grad = grad		#This could be a custom C/C++ function.
 		return in1_grad, in2_grad
 
-#Hook the forward and backward functions to pyprof2
-pyprof2.wrap(Foo, 'forward')
-pyprof2.wrap(Foo, 'backward')
+#Hook the forward and backward functions to pyprof
+pyprof.wrap(Foo, 'forward')
+pyprof.wrap(Foo, 'backward')
 
 foo = Foo.apply
 

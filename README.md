@@ -23,7 +23,7 @@ Armed with such information, the user can determine various issues to help them 
 
 ```bash
 pip3 install . --user
-pip3 uninstall pyprof2
+pip3 uninstall pyprof
 ```
 
 ### How to get started?
@@ -32,8 +32,8 @@ pip3 uninstall pyprof2
 
     ```python
     import torch.cuda.profiler as profiler
-    import pyprof2
-    pyprof2.init()
+    import pyprof
+    pyprof.init()
     ```
 
     Run the training/inference loop with the [PyTorch's NVTX context manager](https://pytorch.org/docs/stable/_modules/torch/autograd/profiler.html#emit_nvtx)
@@ -83,14 +83,14 @@ duration, parameters etc. This file can be used as input to other custom
 scripts as well.
 
     ```bash
-    pyprof2/parse/parse.py net.sql > net.dict
+    pyprof/parse/parse.py net.sql > net.dict
     ```
 
 4. Run the profiler. The input is the python dictionary created above.
 
     ```bash
 	# Columnated output of width 150 with some default columns.
-    pyprof2/prof/prof.py -w 150 net.dict
+    pyprof/prof/prof.py -w 150 net.dict
     ```
 
 The next section describes the various command line options for `prof.py`.
@@ -104,7 +104,7 @@ columns of information for every GPU kernel. You can select a subset
 of columns and their order using the `-c` flag. Note that a few columns
 might have the value *"na"* implying either its a work in progress or the
 tool was unable to extract that information. Assuming the directory is
-`pyprof2/prof`, here are a few examples of how to use `prof.py`.
+`pyprof/prof`, here are a few examples of how to use `prof.py`.
 
 ```bash
 # Print usage and lists all available output columns.
@@ -189,7 +189,7 @@ output a SQL file called `net.sql`.
 information and save it as `net.dict`.
 
     ```bash
-    pyprof2/parse/parse.py net.sql > net.dict
+    pyprof/parse/parse.py net.sql > net.dict
     ```
 
 This is an intermediate file. It is a Python dictionary per line. We
@@ -198,7 +198,7 @@ use it for debugging but we don't expect you to do anything with it.
 3. Run `prof.py` on `net.dict` to get a CSV file.
 
     ```bash
-    pyprof2/prof/prof.py --csv net.dict > net.csv
+    pyprof/prof/prof.py --csv net.dict > net.csv
     ```
 
 ### Profile-guided optimization

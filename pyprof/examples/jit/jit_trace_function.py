@@ -2,7 +2,7 @@
 
 import torch
 import torch.cuda.profiler as profiler
-import pyprof2
+import pyprof
 
 def foo(x, y):
 	return torch.sigmoid(x) + y
@@ -14,14 +14,14 @@ y = torch.ones(4,4).cuda()
 #This returns an object of type ScriptModule with a forward method.
 traced_foo = torch.jit.trace(foo, (x,y))
 
-#Initialize pyprof2 after the JIT step
-pyprof2.init()
+#Initialize pyprof after the JIT step
+pyprof.init()
 
 #Assign a name to the object "traced_foo"
 traced_foo.__dict__['__name__'] = "foo"
 
-#Hook up the forward function to pyprof2
-pyprof2.wrap(traced_foo, 'forward')
+#Hook up the forward function to pyprof
+pyprof.wrap(traced_foo, 'forward')
 
 with torch.autograd.profiler.emit_nvtx():
 	profiler.start()

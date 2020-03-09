@@ -1,13 +1,13 @@
 import torch
 import fused_layer_norm_cuda
 from apex.normalization import FusedLayerNorm
-import pyprof2
+import pyprof
 
-pyprof2.init()
-pyprof2.wrap(fused_layer_norm_cuda, 'forward')
-pyprof2.wrap(fused_layer_norm_cuda, 'backward')
-pyprof2.wrap(fused_layer_norm_cuda, 'forward_affine')
-pyprof2.wrap(fused_layer_norm_cuda, 'backward_affine')
+pyprof.init()
+pyprof.wrap(fused_layer_norm_cuda, 'forward')
+pyprof.wrap(fused_layer_norm_cuda, 'backward')
+pyprof.wrap(fused_layer_norm_cuda, 'forward_affine')
+pyprof.wrap(fused_layer_norm_cuda, 'backward_affine')
 
 input = torch.randn(20, 5, 10, 10).cuda()
 

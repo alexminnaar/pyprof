@@ -1,14 +1,14 @@
 1. How do I intercept the Adam optimizer in APEX ?
 
 	```python
-	import pyprof2
+	import pyprof
 	import fused_adam_cuda
-	pyprof2.wrap(fused_adam_cuda, 'adam')
+	pyprof.wrap(fused_adam_cuda, 'adam')
 	```
 
 2. If you are using JIT and/or AMP, the correct initialization sequence is
 	1. Let any JIT to finish.
-	2. Initlialize pyprof2 `pyprof2.init()`.
+	2. Initlialize pyprof `pyprof.init()`.
 	3. Initialize AMP.
 
 3. How do I profile with `torch.distributed.launch` ?

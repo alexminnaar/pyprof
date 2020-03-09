@@ -10,9 +10,9 @@ import torch.cuda.profiler as profiler
 import operator
 import inspect
 
-#Import and initialize pyprof2
-import pyprof2
-pyprof2.init()
+#Import and initialize pyprof
+import pyprof
+pyprof.init()
 
 X = 1024
 Y = 1024

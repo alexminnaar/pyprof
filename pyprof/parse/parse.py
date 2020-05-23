@@ -5,6 +5,7 @@ Parse the SQLite3 database from NVprof or Nsight and print a dictionary for ever
 """
 
 import sys
+import os
 import argparse
 from tqdm import tqdm
 
@@ -21,6 +22,10 @@ def parseArgs():
 		help="SQLite3 database.")
 
 	args = parser.parse_args()
+
+	if not os.path.isfile(args.file):
+		raise parser.error("No such file '{}'.".format(args.file))
+
 	return args
 
 def dbIsNvvp(db):
